@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiera San Michele - Lo Specchio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font elegante da Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Impedisce a Google di mostrare la pagina nei risultati di ricerca pubblica -->
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+  <!-- Header solo con Titolo -->
+  <header class="header">
+    <h1>Fiera San Michele</h1>
+  </header>
+
+  <!-- Container per lo Specchio e la Frase -->
+  <main class="main-content">
+    <div class="mirror-card">
+      <div class="mirror-header">
+        <span class="sparkle">✨</span>
+        <h2>Lo Specchio Magico</h2>
+        <span class="sparkle">✨</span>
+      </div>
+      
+      <p class="subtitle">Oggi lo specchio pensa che...</p>
+      
+      <!-- Qui appare la frase casuale -->
+      <div class="phrase-box">
+        <p id="frase">Caricamento in corso...</p>
+      </div>
+
+      <button class="btn-refresh" onclick="generaNuovaFrase()">Scopri un'altra frase</button>
+    </div>
+  </main>
+
+  <script>
+    const frasi = [
+      "Riconosco subito una vera baddie",
+      "Multa per eccesso di bellezza",
+      "Voto outfit: 10+",
+      "Ehi scusa ti ho lasciato gli occhi addosso, mi aiuteresti a ritrovarli?",
+      "C'è il Wi-Fi qui? Perché sento una connessione pazzesca tra noi",
+      "Ma ti chiami Alice? Una come te può venire solo dal paese delle meraviglie",
+      "Non ti dimenticherò facilmente",
+      "Non è il caldo ma sei tu che alzi la temperatura",
+      "Sei più piccante della 'nduja calabrese",
+      "Per caso sei nato il 10 ottobre? Perché sei un 10/10",
+      "Se fossi Raoul Bova ti direi che hai degli occhi spaccanti",
+      "Mi chiedevo se avessi un cuore in più perché tu hai appena rubato il mio",
+      "Spero che tu conosca il primo soccorso perché mi hai tolto il fiato",
+      "Ma ti chiami Maya? Perché sei la fine del mondo"
+    ];
+
+    function generaNuovaFrase() {
+      const indiceCasuale = Math.floor(Math.random() * frasi.length);
+      const elementoFrase = document.getElementById("frase");
+      
+      // Effetto dissolvenza
+      elementoFrase.style.opacity = 0;
+      setTimeout(() => {
+        elementoFrase.innerText = `"${frasi[indiceCasuale]}"`;
+        elementoFrase.style.opacity = 1;
+      }, 200);
+    }
+
+    // Genera la prima frase all'apertura della pagina
+    window.onload = generaNuovaFrase;
+  </script>
+</body>
+</html>
