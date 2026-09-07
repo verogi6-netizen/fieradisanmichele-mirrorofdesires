@@ -1,0 +1,138 @@
+/* Reset di base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* Sfondo sfumato dal Rosso al Rosa */
+  background: linear-gradient(135deg, #e60023 0%, #ff6b8b 50%, #ffb6c1 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.header h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Scheda centrale dello Specchio */
+.main-content {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  justify-content: center;
+}
+
+.mirror-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  width: 100%;
+}
+
+.mirror-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mirror-header h2 {
+  font-size: 1.5rem;
+  color: #d60029;
+  font-weight: 700;
+}
+
+.sparkle {
+  font-size: 1.2rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Box della frase casuale */
+.phrase-box {
+  background: linear-gradient(135deg, #fff5f6, #ffe6eb);
+  border: 2px dashed #ff4d6d;
+  border-radius: 16px;
+  padding: 25px 15px;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+#frase {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #8b001a;
+  line-height: 1.4;
+  transition: opacity 0.3s ease;
+}
+
+/* Bottone genera nuova frase */
+.btn-refresh {
+  background: linear-gradient(45deg, #e60023, #ff4d6d);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(230, 0, 35, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-refresh:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.6);
+}
+
+.btn-refresh:active {
+  transform: translateY(0);
+}
+
+/* Adattamento per schermi piccoli (smartphone) */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.9rem;
+  }
+
+  .mirror-card {
+    padding: 25px 18px;
+  }
+
+  #frase {
+    font-size: 1.1rem;
+  }
+}
