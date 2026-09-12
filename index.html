@@ -8,7 +8,7 @@
   <!-- Font elegante da Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   
-  <!-- Libreria per trasformare la scheda in un'immagine da scaricare -->
+  <!-- Libreria per scaricare l'immagine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   
   <meta name="robots" content="noindex, nofollow">
@@ -20,10 +20,10 @@
     <h1>Fiera San Michele</h1>
   </header>
 
-  <!-- Container per lo Specchio e la Frase -->
+  <!-- Container Principale -->
   <main class="main-content">
     
-    <!-- AREA CHE DIVERRA' L'IMMAGINE PER LE STORIE -->
+    <!-- Scheda dello Specchio -->
     <div class="mirror-card" id="card-da-scaricare">
       <div class="mirror-header">
         <span class="sparkle">✨</span>
@@ -38,15 +38,11 @@
         <p id="frase">Caricamento in corso...</p>
       </div>
 
-      <div class="card-footer">
-        <span>📍 Fiera San Michele</span>
+      <!-- Pulsanti messi sotto la frase dentro la scheda -->
+      <div class="actions">
+        <button class="btn btn-refresh" onclick="generaNuovaFrase()">🔄 Scopri un'altra frase</button>
+        <button class="btn btn-download" onclick="scaricaImmagineStoria()">📸 Scarica per le Storie</button>
       </div>
-    </div>
-
-    <!-- Pulsanti di Azione -->
-    <div class="actions">
-      <button class="btn-refresh" onclick="generaNuovaFrase()">🔄 Scopri un'altra frase</button>
-      <button class="btn-download" onclick="scaricaImmagineStoria()">📸 Scarica per le Storie</button>
     </div>
 
   </main>
@@ -83,19 +79,27 @@
     function scaricaImmagineStoria() {
       const card = document.getElementById("card-da-scaricare");
       
-      // Crea l'immagine in alta risoluzione
       html2canvas(card, { 
         scale: 3, 
-        backgroundColor: null 
+        backgroundColor: null,
+        useCORS: true
       }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'specchio-fiera-san-michele.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        canvas.toBlob(function(blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          
+          link.href = url;
+          link.download = 'specchio-fiera-san-michele.png';
+          
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          setTimeout(() => URL.revokeObjectURL(url), 100);
+        }, 'image/png');
       });
     }
 
-    // Genera la prima frase all'apertura
     window.onload = generaNuovaFrase;
   </script>
 </body>
