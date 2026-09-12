@@ -38,8 +38,13 @@
         <p id="frase">Caricamento in corso...</p>
       </div>
 
+      <!-- Tag Instagram visibile nell'immagine scaricata -->
+      <div class="instagram-handle" id="ig-handle">
+        @fiera_san_michele_barcon
+      </div>
+
       <!-- Pulsanti messi sotto la frase dentro la scheda -->
-      <div class="actions">
+      <div class="actions" id="actions-box">
         <button class="btn btn-refresh" onclick="generaNuovaFrase()">🔄 Scopri un'altra frase</button>
         <button class="btn btn-download" onclick="scaricaImmagineStoria()">📸 Scarica per le Storie</button>
       </div>
@@ -78,7 +83,14 @@
 
     function scaricaImmagineStoria() {
       const card = document.getElementById("card-da-scaricare");
-      
+      const actionsBox = document.getElementById("actions-box");
+      const igHandle = document.getElementById("ig-handle");
+
+      // 1. Nasconde i pulsanti e mostra la dicitura Instagram
+      actionsBox.style.display = "none";
+      igHandle.style.display = "block";
+
+      // 2. Genera l'immagine pulita
       html2canvas(card, { 
         scale: 3, 
         backgroundColor: null,
@@ -96,7 +108,15 @@
           document.body.removeChild(link);
           
           setTimeout(() => URL.revokeObjectURL(url), 100);
+
+          // 3. Ripristina lo stato originale a schermo
+          actionsBox.style.display = "flex";
+          igHandle.style.display = "none";
         }, 'image/png');
+      }).catch(err => {
+        // Ripristina comunque i pulsanti in caso di errore
+        actionsBox.style.display = "flex";
+        igHandle.style.display = "none";
       });
     }
 
