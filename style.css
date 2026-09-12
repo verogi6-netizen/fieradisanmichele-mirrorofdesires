@@ -20,15 +20,15 @@ body {
 /* Header */
 .header {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 25px;
   width: 100%;
   max-width: 600px;
 }
 
 .header h1 {
   color: #ffffff;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -38,19 +38,19 @@ body {
 /* Scheda centrale dello Specchio */
 .main-content {
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mirror-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
-  padding: 30px 25px;
+  padding: 30px 25px 20px 25px;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.8);
   width: 100%;
 }
 
@@ -59,11 +59,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .mirror-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #d60029;
   font-weight: 700;
 }
@@ -73,9 +73,9 @@ body {
 }
 
 .subtitle {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #666;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 /* Box della frase casuale */
@@ -84,52 +84,81 @@ body {
   border: 2px dashed #ff4d6d;
   border-radius: 16px;
   padding: 25px 15px;
-  min-height: 130px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 #frase {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #8b001a;
   line-height: 1.4;
   transition: opacity 0.3s ease;
 }
 
-/* Bottone genera nuova frase */
+.card-footer {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ff4d6d;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* Contenitore dei Pulsanti */
+.actions {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Bottone Genera Nuova Frase */
 .btn-refresh {
   background: linear-gradient(45deg, #e60023, #ff4d6d);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 20px;
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(230, 0, 35, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(230, 0, 35, 0.3);
+  transition: transform 0.2s;
+  width: 100%;
 }
 
-.btn-refresh:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.6);
+/* Bottone Scarica per Storie */
+.btn-download {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+  transition: transform 0.2s;
+  width: 100%;
 }
 
-.btn-refresh:active {
-  transform: translateY(0);
+.btn-refresh:active, .btn-download:active {
+  transform: scale(0.98);
 }
 
-/* Adattamento per schermi piccoli (smartphone) */
+/* Responsive smartphone */
 @media (max-width: 480px) {
   .header h1 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
   }
 
   .mirror-card {
-    padding: 25px 18px;
+    padding: 25px 18px 15px 18px;
   }
 
   #frase {
