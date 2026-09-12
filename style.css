@@ -98,18 +98,18 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* Dicitura Instagram (visibile solo nell'immagine scaricata) */
+/* Dicitura Instagram (nascosta di base sullo schermo) */
 .instagram-handle {
   display: none;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #d60029;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   letter-spacing: 0.5px;
 }
 
-/* Contenitore e stile uniforme per i due pulsanti */
+/* Contenitore e stile per i pulsanti */
 .actions {
   width: 100%;
   display: flex;
