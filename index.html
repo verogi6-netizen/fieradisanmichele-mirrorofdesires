@@ -39,6 +39,23 @@
     </div>
   </main>
 
+function condividiSuInstagram() {
+  const fraseAttuale = document.getElementById("frase").innerText;
+  const testoDaCopiare = `${fraseAttuale}\n\nScoperto allo specchio della Fiera San Michele! ✨`;
+
+  // Copia la frase negli appunti
+  navigator.clipboard.writeText(testoDaCopiare).then(() => {
+    alert("Frase copiata! Ora puoi incollarla nella tua Storia o Post su Instagram.");
+    
+    // Prova ad aprire l'app di Instagram (o il sito se da PC)
+    window.location.href = "instagram://story-camera"; 
+  }).catch(err => {
+    // Gestione nel caso il browser blocchi la copia automatica
+    alert("Copia questa frase e provala su Instagram:\n\n" + fraseAttuale);
+  });
+}
+
+
   <script>
     const frasi = [
       "Riconosco subito una vera baddie",
