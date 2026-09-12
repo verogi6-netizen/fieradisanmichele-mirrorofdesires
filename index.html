@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiera di San Michele - Mirror Of Desires</title>
+  <title>Fiera San Michele - Lo Specchio</title>
   <link rel="stylesheet" href="style.css">
   <!-- Font elegante da Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   
-  <!-- Impedisce a Google di mostrare la pagina nei risultati di ricerca pubblica -->
+  <!-- Impedisce a Google di indicizzare la pagina nei risultati pubblici -->
   <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 
-  <!-- Header solo con Titolo -->
+  <!-- Header con Titolo -->
   <header class="header">
-    <h1>Fiera di San Michele - Mirror Of Desires</h1>
+    <h1>Fiera San Michele</h1>
   </header>
 
   <!-- Container per lo Specchio e la Frase -->
@@ -34,13 +34,33 @@
         <p id="frase">Caricamento in corso...</p>
       </div>
 
+      <!-- Pulsanti -->
       <button class="btn-refresh" onclick="generaNuovaFrase()">Scopri un'altra frase</button>
-      <button class="btn-share" onclick="condividiSuInstagram()">📸 Condividi su Instagram</button>
+      <button class="btn-share" onclick="condividiSuInstagram()">📸 Condividi la frase</button>
     </div>
   </main>
 
+  <!-- JAVASCRIPT INSERITO DIRETTAMENTE QUI -->
+ <script>
+function condividiSuInstagram() {
+  const fraseAttuale = document.getElementById("frase").innerText;
+  const testoDaCopiare = `${fraseAttuale}\n\nScoperto allo specchio della Fiera San Michele! ✨`;
 
-  <script>
+  // Copia la frase negli appunti
+  navigator.clipboard.writeText(testoDaCopiare).then(() => {
+    alert("Frase copiata! Ora puoi incollarla nella tua Storia o Post su Instagram.");
+    
+    // Prova ad aprire l'app di Instagram (o il sito se da PC)
+    window.location.href = "instagram://story-camera"; 
+  }).catch(err => {
+    // Gestione nel caso il browser blocchi la copia automatica
+    alert("Copia questa frase e provala su Instagram:\n\n" + fraseAttuale);
+  });
+}
+</script>
+  
+  
+   <script>
     const frasi = [
       "Riconosco subito una vera baddie",
       "Multa per eccesso di bellezza",
@@ -51,7 +71,7 @@
       "Non ti dimenticherò facilmente",
       "Non è il caldo ma sei tu che alzi la temperatura",
       "Sei più piccante della 'nduja calabrese",
-      "Per caso sei nata il 10 ottobre? Perché sei un 10/10",
+      "Per caso sei nato il 10 ottobre? Perché sei un 10/10",
       "Se fossi Raoul Bova ti direi che hai degli occhi spaccanti",
       "Mi chiedevo se avessi un cuore in più perché tu hai appena rubato il mio",
       "Spero che tu conosca il primo soccorso perché mi hai tolto il fiato",
@@ -68,6 +88,22 @@
         elementoFrase.innerText = `"${frasi[indiceCasuale]}"`;
         elementoFrase.style.opacity = 1;
       }, 200);
+    }
+
+    function condividiSuInstagram() {
+      const fraseAttuale = document.getElementById("frase").innerText;
+      const testoCondivisione = `${fraseAttuale}\n\nLo Specchio Magico - Fiera San Michele ✨`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'Fiera San Michele',
+          text: testoCondivisione,
+          url: window.location.href
+        }).catch((error) => console.log('Condivisione annullata', error));
+      } else {
+        navigator.clipboard.writeText(testoCondivisione);
+        alert("Frase copiata negli appunti! Ora puoi incollarla su Instagram.");
+      }
     }
 
     // Genera la prima frase all'apertura della pagina
