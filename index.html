@@ -38,12 +38,12 @@
         <p id="frase">Caricamento in corso...</p>
       </div>
 
-      <!-- Tag Instagram visibile nell'immagine scaricata -->
+      <!-- Tag Instagram (visibile SOLO nell'immagine scaricata) -->
       <div class="instagram-handle" id="ig-handle">
         @fiera_san_michele_barcon
       </div>
 
-      <!-- Pulsanti messi sotto la frase dentro la scheda -->
+      <!-- Pulsanti visibili sul sito -->
       <div class="actions" id="actions-box">
         <button class="btn btn-refresh" onclick="generaNuovaFrase()">🔄 Scopri un'altra frase</button>
         <button class="btn btn-download" onclick="scaricaImmagineStoria()">📸 Scarica per le Storie</button>
@@ -86,38 +86,39 @@
       const actionsBox = document.getElementById("actions-box");
       const igHandle = document.getElementById("ig-handle");
 
-      // 1. Nasconde i pulsanti e mostra la dicitura Instagram
-      actionsBox.style.display = "none";
-      igHandle.style.display = "block";
+      // 1. Applica le modifiche grafiche al DOM
+      actionsBox.style.setProperty("display", "none", "important");
+      igHandle.style.setProperty("display", "block", "important");
 
-      // 2. Genera l'immagine pulita
-      html2canvas(card, { 
-        scale: 3, 
-        backgroundColor: null,
-        useCORS: true
-      }).then(canvas => {
-        canvas.toBlob(function(blob) {
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          
-          link.href = url;
-          link.download = 'specchio-fiera-san-michele.png';
-          
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          
-          setTimeout(() => URL.revokeObjectURL(url), 100);
+      // 2. Aspetta 100ms per dare il tempo al browser di ridisegnare la pagina prima dello screenshot
+      setTimeout(() => {
+        html2canvas(card, { 
+          scale: 3, 
+          backgroundColor: null,
+          useCORS: true
+        }).then(canvas => {
+          canvas.toBlob(function(blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            
+            link.href = url;
+            link.download = 'specchio-fiera-san-michele.png';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            setTimeout(() => URL.revokeObjectURL(url), 100);
 
-          // 3. Ripristina lo stato originale a schermo
+            // 3. Ripristina i pulsanti a schermo
+            actionsBox.style.display = "flex";
+            igHandle.style.display = "none";
+          }, 'image/png');
+        }).catch(err => {
           actionsBox.style.display = "flex";
           igHandle.style.display = "none";
-        }, 'image/png');
-      }).catch(err => {
-        // Ripristina comunque i pulsanti in caso di errore
-        actionsBox.style.display = "flex";
-        igHandle.style.display = "none";
-      });
+        });
+      }, 100);
     }
 
     window.onload = generaNuovaFrase;
